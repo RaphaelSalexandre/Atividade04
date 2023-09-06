@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+public class MenuProgram {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String frase = "";
+
+        while (true) {
+          
+            limparTela();
+
+            System.out.println("====");
+            System.out.println("  CALCULADORA   ");
+            System.out.println("=======");
+            System.out.println("1 - Imprimir o comprimento da frase");
+            System.out.println("2 - Imprimir os dois primeiros e os dois últimos caracteres da frase");
+            System.out.println("3 - Imprimir a frase espelhada");
+            System.out.println("4 - Sair do programa");
+            System.out.println("=======");
+            System.out.print("Escolha uma opção: ");
+
+            int escolha = scanner.nextInt();
+            scanner.nextLine(); 
+
+            switch (escolha) {
+                case 1:
+                    System.out.println("==============");
+                    System.out.println("Digite uma frase:");
+                    frase = scanner.nextLine();
+                    System.out.println("=============");
+                    System.out.println("Comprimento da frase: " + frase.length());
+                    pausar();
+                    break;
+                case 2:
+                    if (frase.isEmpty()) {
+                        System.out.println("=========");
+                        System.out.println("A frase está vazia. Digite uma frase primeiro.");
+                        pausar();
+                    } else if (frase.length() < 2) {
+                        System.out.println("======================");
+                        System.out.println("A frase é muito curta para imprimir os dois primeiros e os dois últimos caracteres.");
+                        pausar();
+                    } else {
+                        System.out.println("=================");
+                        System.out.println("Dois primeiros caracteres: " + frase.substring(0, 2));
+                        System.out.println("Dois últimos caracteres: " + frase.substring(frase.length() - 2));
+                        pausar();
+                    }
+                    break;
+                case 3:
+                    if (frase.isEmpty()) {
+                        System.out.println("===========");
+                        System.out.println("A frase está vazia. Digite uma frase primeiro.");
+                        pausar();
+                    } else {
+                        StringBuilder reverso = new StringBuilder(frase).reverse();
+                        System.out.println("===================");
+                        System.out.println("Frase espelhada: " + reverso.toString());
+                        pausar();
+                    }
+                    break;
+                case 4:
+                    System.out.println("=============");
+                    System.out.println("Encerrando o programa. Adeus!");
+                    scanner.close();
+                    System.exit(0);
+                default:
+                    System.out.println("==============");
+                    System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
+                    pausar();
+            }
+        }
+    }
+    public static void pausar() {
+        System.out.println("Pressione Enter para continuar...");
+        try {
+            System.in.read();
+        } catch (Exception e) {
+        }
+    }
