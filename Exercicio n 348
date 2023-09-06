@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class BoletimEscolar {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        
+        int numeroDeAlunos = 5;
+
+        
+        String[] nomes = new String[numeroDeAlunos];
+        double[] notas1 = new double[numeroDeAlunos];
+        double[] notas2 = new double[numeroDeAlunos];
+
+        
+        for (int i = 0; i < numeroDeAlunos; i++) {
+            System.out.println("Informe o nome do aluno " + (i + 1) + ": ");
+            nomes[i] = scanner.nextLine();
+
+            System.out.println("Informe a primeira nota do aluno " + (i + 1) + ": ");
+            notas1[i] = scanner.nextDouble();
+
+            System.out.println("Informe a segunda nota do aluno " + (i + 1) + ": ");
+            notas2[i] = scanner.nextDouble();
+
+           
+            scanner.nextLine();
+        }
+
+        
+        System.out.println("Boletim Escolar:");
+        System.out.println("-------------------------------------------------");
+        System.out.println("| Nome         | Nota 1 | Nota 2 | Média    |");
+        System.out.println("-------------------------------------------------");
+
+        for (int i = 0; i < numeroDeAlunos; i++) {
+            String nome = nomes[i];
+            double nota1 = notas1[i];
+            double nota2 = notas2[i];
+            double media = (nota1 + nota2) / 2;
+
+            System.out.printf("| %-12s | %-6.2f | %-6.2f | %-7.2f |\n", nome, nota1, nota2, media);
+        }
+
+        System.out.println("-------------------------------------------------");
+
+       
+        scanner.close();
+    }
+}
