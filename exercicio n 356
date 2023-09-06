@@ -20,25 +20,24 @@ public class CalculoMediaAlunos {
             System.out.print("Digite a nota da PR2: ");
             pr2[i] = scanner.nextDouble();
             
-            // Calcular a média arredondada
+            
             media[i] = Math.round((pr1[i] + pr2[i]) / 2.0);
 
-            // Determinar a situação do aluno (AP ou RP)
+         
             situacao[i] = (media[i] >= 6.0) ? "AP" : "RP";
 
-            scanner.nextLine(); // Limpar o buffer do teclado
+            scanner.nextLine(); 
         }
 
-        // Imprimir listagem
         System.out.println("\nListagem de Alunos:");
-        System.out.println("-------------------------------------------------");
+        System.out.println("--------");
         System.out.println("Nome\tNota PR1\tNota PR2\tMédia\tSituação");
-        System.out.println("-------------------------------------------------");
+        System.out.println("--------");
         for (int i = 0; i < 15; i++) {
             System.out.println(nomes[i] + "\t" + pr1[i] + "\t\t" + pr2[i] + "\t\t" + media[i] + "\t" + situacao[i]);
         }
-        System.out.println("-------------------------------------------------");
+        System.out.println("------------------");
 
         scanner.close();
     }
-}
+
