@@ -1,0 +1,255 @@
+Exercicio 346: 
+import java.util.Scanner;
+
+public class MenuProgram {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String frase = "";
+
+        while (true) {
+            // Limpa a tela para criar uma sensação de estilo
+            limparTela();
+
+            System.out.println("========================================");
+            System.out.println("              CALCULADORA              ");
+            System.out.println("========================================");
+            System.out.println("1 - Imprimir o comprimento da frase");
+            System.out.println("2 - Imprimir os dois primeiros e os dois últimos caracteres da frase");
+            System.out.println("3 - Imprimir a frase espelhada");
+            System.out.println("4 - Sair do programa");
+            System.out.println("========================================");
+            System.out.print("Escolha uma opção: ");
+
+            int escolha = scanner.nextInt();
+            scanner.nextLine(); // Consumir a nova linha após a leitura do número
+
+            switch (escolha) {
+                case 1:
+                    System.out.println("========================================");
+                    System.out.println("Digite uma frase:");
+                    frase = scanner.nextLine();
+                    System.out.println("========================================");
+                    System.out.println("Comprimento da frase: " + frase.length());
+                    pausar();
+                    break;
+                case 2:
+                    if (frase.isEmpty()) {
+                        System.out.println("========================================");
+                        System.out.println("A frase está vazia. Digite uma frase primeiro.");
+                        pausar();
+                    } else if (frase.length() < 2) {
+                        System.out.println("========================================");
+                        System.out.println("A frase é muito curta para imprimir os dois primeiros e os dois últimos caracteres.");
+                        pausar();
+                    } else {
+                        System.out.println("========================================");
+                        System.out.println("Dois primeiros caracteres: " + frase.substring(0, 2));
+                        System.out.println("Dois últimos caracteres: " + frase.substring(frase.length() - 2));
+                        pausar();
+                    }
+                    break;
+                case 3:
+                    if (frase.isEmpty()) {
+                        System.out.println("========================================");
+                        System.out.println("A frase está vazia. Digite uma frase primeiro.");
+                        pausar();
+                    } else {
+                        StringBuilder reverso = new StringBuilder(frase).reverse();
+                        System.out.println("========================================");
+                        System.out.println("Frase espelhada: " + reverso.toString());
+                        pausar();
+                    }
+                    break;
+                case 4:
+                    System.out.println("========================================");
+                    System.out.println("Encerrando o programa. Adeus!");
+                    scanner.close();
+                    System.exit(0);
+                default:
+                    System.out.println("========================================");
+                    System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
+                    pausar();
+            }
+        }
+    }
+
+    // Função para pausar e aguardar a confirmação do usuário antes de continuar
+    public static void pausar() {
+        System.out.println("Pressione Enter para continuar...");
+        try {
+            System.in.read();
+        } catch (Exception e) {
+        }
+    }
+
+Atividade 351: 
+
+    import java.util.Scanner;
+
+public class ProcuraNomePeloNumero {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] nomes = new String[5];
+
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Digite o nome " + (i + 1) + ": ");
+            nomes[i] = scanner.nextLine();
+        }
+
+        System.out.print("Digite o número da pessoa (1 a 5): ");
+        int num = scanner.nextInt();
+
+        if (num >= 1 && num <= 5) {
+            System.out.println("O nome da pessoa " + num + " é: " + nomes[num - 1]);
+        } else {
+            System.out.println("Número fora do intervalo.");
+        }
+
+        scanner.close();
+    }
+}
+Exercicio 356: 
+import java.util.Scanner;
+
+public class CalculoMediaAlunos {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String[] nomes = new String[15];
+        double[] pr1 = new double[15];
+        double[] pr2 = new double[15];
+        double[] media = new double[15];
+        String[] situacao = new String[15];
+
+        for (int i = 0; i < 15; i++) {
+            System.out.print("Digite o nome do aluno " + (i + 1) + ": ");
+            nomes[i] = scanner.nextLine();
+
+            System.out.print("Digite a nota da PR1: ");
+            pr1[i] = scanner.nextDouble();
+
+            System.out.print("Digite a nota da PR2: ");
+            pr2[i] = scanner.nextDouble();
+            
+            // Calcular a média arredondada
+            media[i] = Math.round((pr1[i] + pr2[i]) / 2.0);
+
+            // Determinar a situação do aluno (AP ou RP)
+            situacao[i] = (media[i] >= 6.0) ? "AP" : "RP";
+
+            scanner.nextLine(); // Limpar o buffer do teclado
+        }
+
+        // Imprimir listagem
+        System.out.println("\nListagem de Alunos:");
+        System.out.println("-------------------------------------------------");
+        System.out.println("Nome\tNota PR1\tNota PR2\tMédia\tSituação");
+        System.out.println("-------------------------------------------------");
+        for (int i = 0; i < 15; i++) {
+            System.out.println(nomes[i] + "\t" + pr1[i] + "\t\t" + pr2[i] + "\t\t" + media[i] + "\t" + situacao[i]);
+        }
+        System.out.println("-------------------------------------------------");
+
+        scanner.close();
+    }
+}
+ Exercicio 358:
+
+import java.util.Scanner;
+
+public class AnaliseLucroMercadorias {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int totalMercadorias = 100;
+        int lucroMenor10 = 0;
+        int lucroEntre10e20 = 0;
+        int lucroMaior20 = 0;
+
+        for (int i = 1; i <= totalMercadorias; i++) {
+            System.out.print("Digite o preço de compra da mercadoria " + i + ": ");
+            double precoCompra = scanner.nextDouble();
+
+            System.out.print("Digite o preço de venda da mercadoria " + i + ": ");
+            double precoVenda = scanner.nextDouble();
+
+            double lucro = (precoVenda - precoCompra) / precoCompra * 100;
+
+            if (lucro < 10) {
+                lucroMenor10++;
+            } else if (lucro <= 20) {
+                lucroEntre10e20++;
+            } else {
+                lucroMaior20++;
+            }
+        }
+
+        System.out.println("\nAnálise de Lucro das Mercadorias:");
+        System.out.println("Lucro < 10%: " + lucroMenor10 + " mercadorias");
+        System.out.println("10% <= Lucro <= 20%: " + lucroEntre10e20 + " mercadorias");
+        System.out.println("Lucro > 20%: " + lucroMaior20 + " mercadorias");
+
+        scanner.close();
+    }
+}
+exercicio 360: 
+import java.util.Scanner;
+
+public class Horoscopo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.print("Digite a data de nascimento (ddmm) ou 9999 para sair: ");
+            String dataNascimento = scanner.nextLine();
+
+            if (dataNascimento.equals("9999")) {
+                System.out.println("Encerrando o programa.");
+                break;
+            }
+
+            int mes = Integer.parseInt(dataNascimento.substring(2, 4));
+            int dia = Integer.parseInt(dataNascimento.substring(0, 2));
+
+            String signo = determinarSigno(mes, dia);
+            System.out.println("Signo: " + signo);
+        }
+
+        scanner.close();
+    }
+
+    public static String determinarSigno(int mes, int dia) {
+        if ((mes == 1 && dia >= 20) || (mes == 2 && dia <= 19)) {
+            return "Capricórnio";
+        } else if ((mes == 2 && dia >= 20) || (mes == 3 && dia <= 20)) {
+            return "Aquário";
+        } else if ((mes == 3 && dia >= 21) || (mes == 4 && dia <= 20)) {
+            return "Peixes";
+        } else if ((mes == 4 && dia >= 21) || (mes == 5 && dia <= 20)) {
+            return "Áries";
+        } else if ((mes == 5 && dia >= 21) || (mes == 6 && dia <= 20)) {
+            return "Touro";
+        } else if ((mes == 6 && dia >= 21) || (mes == 7 && dia <= 21)) {
+            return "Gêmeos";
+        } else if ((mes == 7 && dia >= 22) || (mes == 8 && dia <= 22)) {
+            return "Câncer";
+        } else if ((mes == 8 && dia >= 23) || (mes == 9 && dia <= 22)) {
+            return "Leão";
+        } else if ((mes == 9 && dia >= 23) || (mes == 10 && dia <= 22)) {
+            return "Virgem";
+        } else if ((mes == 10 && dia >= 23) || (mes == 11 && dia <= 21)) {
+            return "Libra";
+        } else {
+            return "Escorpião";
+        }
+    }
+}
+
+
+
+    // Função para limpar a tela do console
+    public static void limparTela() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+}
